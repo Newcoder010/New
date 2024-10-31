@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Your Crush</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        button { padding: 10px 20px; margin: 20px; font-size: 16px; }
+        .hidden { display: none; }
+        #container { position: relative; height: 200px; }
+        #noBtn { position: absolute; }
+        .animation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            animation: float 3s infinite;
+        }
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -60%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div id="askSection">
+        <h1>Will you go on a date with me?</h1>
+        <div id="container">
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn" onmouseover="moveButton()">No</button>
+        </div>
+    </div>
+    <div id="response" class="hidden">
+        <h2>Congratulations! Our date will be next Sunday evening. 🎉❤️</h2>
+        <div class="animation">❤️ 🌸 💕 🌷 💖</div>
+        <p>By: Alok</p>
+    </div>
+
+    <script>
+        function moveButton() {
+            var noBtn = document.getElementById("noBtn");
+            var container = document.getElementById("container");
+            var maxX = container.clientWidth - noBtn.clientWidth;
+            var maxY = container.clientHeight - noBtn.clientHeight;
+            var newX = Math.random() * maxX;
+            var newY = Math.random() * maxY;
+            noBtn.style.left = newX + "px";
+            noBtn.style.top = newY + "px";
+        }
+
+        document.getElementById("yesBtn").onclick = function() {
+            document.getElementById("askSection").classList.add("hidden");
+            document.getElementById("response").classList.remove("hidden");
+        };
+    </script>
+</body>
+</html>
